@@ -1,0 +1,96 @@
+{
+    "config": {
+        "class": "isegm.model.is_plainvit_model.PlainVitModel",
+        "params": {
+            "use_disks": {
+                "type": "builtin",
+                "value": true,
+                "specified": true
+            },
+            "norm_radius": {
+                "type": "builtin",
+                "value": 5,
+                "specified": true
+            },
+            "with_prev_mask": {
+                "type": "builtin",
+                "value": true,
+                "specified": true
+            },
+            "backbone_params": {
+                "type": "builtin",
+                "value": {
+                    "img_size": [
+                        448,
+                        448
+                    ],
+                    "patch_size": "(16, 16)",
+                    "in_chans": 3,
+                    "embed_dim": 768,
+                    "depth": 12,
+                    "num_heads": 12,
+                    "mlp_ratio": 4,
+                    "qkv_bias": true
+                },
+                "specified": true
+            },
+            "neck_params": {
+                "type": "builtin",
+                "value": {
+                    "in_dim": 768,
+                    "out_dims": [
+                        128,
+                        256,
+                        512,
+                        1024
+                    ]
+                },
+                "specified": true
+            },
+            "head_params": {
+                "type": "builtin",
+                "value": {
+                    "in_channels": [
+                        128,
+                        256,
+                        512,
+                        1024
+                    ],
+                    "in_index": [
+                        0,
+                        1,
+                        2,
+                        3
+                    ],
+                    "dropout_ratio": 0.1,
+                    "num_classes": 1,
+                    "loss_decode": "CrossEntropyLoss(False, use_mask=False, reduction=mean, class_weight=None, loss_weight=1.0)",
+                    "align_corners": false,
+                    "upsample": "x1",
+                    "channels": 256
+                },
+                "specified": true
+            },
+            "random_split": {
+                "type": "builtin",
+                "value": false,
+                "specified": true
+            },
+            "with_aux_output": {
+                "type": "builtin",
+                "value": false,
+                "specified": false
+            },
+            "cpu_dist_maps": {
+                "type": "builtin",
+                "value": false,
+                "specified": false
+            },
+            "norm_mean_std": {
+                "type": "builtin",
+                "value": "([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])",
+                "specified": false
+            }
+        }
+    }
+}
